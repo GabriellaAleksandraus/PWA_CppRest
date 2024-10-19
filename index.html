@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Smart Plant Monitor
+	</title>
+</head>
+
+<body>
+	Smart Plant Monitor!
+    <div>
+        <h4> Moisture level is: <span id="moisture">0</span> </h4>
+    </div>
+    <button onclick="milo()" style="background-color: rgb(0, 255, 157); color: black;">MILO</button>
+    <button onclick="get_moisture()">Update Moisture Level</button>
+    <script> // JavaScript code
+        function milo() { 
+            alert("MILO");
+        }
+        function get_moisture() {
+            fetch("http://192.168.32.16:3000/get_moisture")
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById("moisture").innerText = data["moisture"] + "%";
+                    if (data["moisture"] < 1) {
+                        alert("Water the plant");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+</body>
+
+</html>

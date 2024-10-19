@@ -53,3 +53,20 @@ FetchContent_MakeAvailable(crow)
 This will download the crow library and include it in our project. We can now use the crow library in our project.
 
 Crow is dependent on Asio so we had to make the same steps to include Asio in our project.
+
+## Server
+
+To create a server we need to create a crow::SimpleApp object and define the routes we want to handle.
+
+The server keeps track of a moisture value. We can update the value by sending a get request to /set_moisture/\<value\>.
+
+```bash
+curl http://localhost:3000/set_moisture/50
+```
+
+We can get the value by sending a get request to /get_moisture.
+
+```bash
+curl http://localhost:3000/get_moisture
+```
+
