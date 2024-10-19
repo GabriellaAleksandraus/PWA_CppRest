@@ -70,3 +70,6 @@ We can get the value by sending a get request to /get_moisture.
 curl http://localhost:3000/get_moisture
 ```
 
+## Frontend
+
+We can create a frontend to interact with the server. It's a simple html page that shows the current moisture value. We use JavaScript to make a get request to the server to get the moisture value and update the page. We put on click event on a button and when we receive the response from the server we use document.getElementById to find which HTML element to update the value. However there is a inconvenience because we need to know the IP address of the server and this is dynamic because it's based on what network the local server is running on. Since we want people to get access to HTML file we need to create a route that is /index.html and serve the file.
