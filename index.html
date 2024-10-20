@@ -28,10 +28,10 @@
 <body>
     <div class="jumbotron text-center">
         <h1>Smart Plant Monitor</h1>
-        <p>Makes plants happy</p> 
+        <p>Makes plants happy!</p> 
       </div>
     <div class="text-center">
-        <h4> Moisture level is: <span id="moisture">0</span> </h4>
+        <h4> Moisture level is: <span id="moisture">0</span>% </h4>
     </div>
     <div class="row text-center">
         <button onclick="milo()" class="btn btn-success">MILO</button>
@@ -41,10 +41,10 @@
             alert("MILO");
         }
         function get_moisture() {
-            fetch("http://192.168.32.16:5000/get_moisture") //We use this address because the server from the client view is running on a different machine so localhost will not work
+            fetch("/get_moisture") //We use this address because the server from the client view is running on a different machine so localhost will not work
                 .then((response) => response.json())   
                 .then((data) => { //When we receive a response from the server we will execute the following code
-                    document.getElementById("moisture").innerText = data["moisture"] + "%";
+                    document.getElementById("moisture").innerText = data["moisture"];
                 })
                 .catch((error) => {
                     console.error("Error:", error);

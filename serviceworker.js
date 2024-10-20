@@ -1,8 +1,8 @@
 var cacheName = 'SPM';
 var filesToCache = [
   '/',
-  '/index.html',
-  '/manifest.json',
+  //'/index.html',
+  //'/manifest.json',
 ];
 
 /* Start the service worker and cache all of the app's content */
