@@ -5,32 +5,54 @@
 	<title>
 		Smart Plant Monitor
 	</title>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!--This is bootstrap-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="manifest" href="/manifest.json"> <!--This is the link to the manifest file  -->
+    <script> // This is to link the service worker file to index.html
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+    
 </head>
 
 <body>
-	Smart Plant Monitor!
-    <div>
+    <div class="jumbotron text-center">
+        <h1>Smart Plant Monitor</h1>
+        <p>Makes plants happy</p> 
+      </div>
+    <div class="text-center">
         <h4> Moisture level is: <span id="moisture">0</span> </h4>
     </div>
-    <button onclick="milo()" style="background-color: rgb(0, 255, 157); color: black;">MILO</button>
-    <button onclick="get_moisture()">Update Moisture Level</button>
+    <div class="row text-center">
+        <button onclick="milo()" class="btn btn-success">MILO</button>
+    </div>
     <script> // JavaScript code
         function milo() { 
             alert("MILO");
         }
         function get_moisture() {
-            fetch("http://192.168.32.16:3000/get_moisture")
-                .then((response) => response.json())
-                .then((data) => {
+            fetch("http://192.168.32.16:5000/get_moisture") //We use this address because the server from the client view is running on a different machine so localhost will not work
+                .then((response) => response.json())   
+                .then((data) => { //When we receive a response from the server we will execute the following code
                     document.getElementById("moisture").innerText = data["moisture"] + "%";
-                    if (data["moisture"] < 1) {
-                        alert("Water the plant");
-                    }
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                 });
+            setTimeout(get_moisture, 1000); //This will call the function get_moisture every 1000ms
+                
         }
+        get_moisture();
     </script>
 </body>
 

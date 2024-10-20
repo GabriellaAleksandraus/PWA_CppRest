@@ -1,0 +1,10 @@
+
+{
+	"name":"PWA Test For SPM",
+	"short_name":"SPM",
+	"start_url":"index.html",
+	"display":"standalone",
+	"background_color":"#ffffff",
+	"theme_color":"#32a852"
+}
+

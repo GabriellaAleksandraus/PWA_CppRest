@@ -1,3 +1,10 @@
+# Server
+
+We need a server so clients have a way to access all the information that we would like to share with them. This is both the PWA data, HTML, JavaScript files and the data from the sensors. It has also an endpoint to update the moisture value. An endpoint is a route that the server listens ex: localhost:3000/get_moisture. The server will listen to the port 3000. We can send a get request to the server to get the moisture value. 
+
+We need a server because we want a single point of access for all client needs. And the client is the person that has the PWA on the phone. The server will be the one that will handle the requests from the client and send the responses back. The server will also handle the data from the sensors and send it to the client.
+
+
 # PWA_CppRest
 
 We want to create a C++ restApi but we don't want to do everything by ourselves. We want to use third part libraries like crow to make http requests and responses easier. Since crow uses Cmake it will be easy to integrate it to our project if we also use Cmake. Since it is an established tool in C++ eco system we will use it to build our project.
