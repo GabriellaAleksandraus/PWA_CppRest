@@ -33,13 +33,13 @@
     <div class="text-center">
         <h4> Moisture level is: <span id="moisture">0</span>% </h4>
     </div>
-    <div class="row text-center">
+    <!-- <div class="row text-center">
         <button onclick="milo()" class="btn btn-success">MILO</button>
-    </div>
+    </div> -->
     <script> // JavaScript code
-        function milo() { 
-            alert("MILO");
-        }
+        // function milo() { 
+        //     alert("MILO");
+        // }
         function get_moisture() {
             fetch("/get_moisture") //We use this address because the server from the client view is running on a different machine so localhost will not work
                 .then((response) => response.json())   

@@ -13,6 +13,8 @@ int main()
         return "Server is running";
     });
 
+    //Ports
+
     CROW_ROUTE(app,"/index.html") ([](){
         std::ifstream in("../index.html"); //This is to read the file index.html
         std::string content((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()); //This is to convert the file to a string so we can understand it
@@ -50,5 +52,5 @@ int main()
         return crow::response(200);
     });
 
-    app.bindaddr("0.0.0.0").port(5000).run(); //This is to run the server on port 3000 (we need to give a port number that is not already in use)
+    app.bindaddr("0.0.0.0").port(5000).run(); //This is to run the server on port 5000 (we need to give a port number that is not already in use)
 }

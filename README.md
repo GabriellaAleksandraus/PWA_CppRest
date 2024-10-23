@@ -1,6 +1,6 @@
 # Server
 
-We need a server so clients have a way to access all the information that we would like to share with them. This is both the PWA data, HTML, JavaScript files and the data from the sensors. It has also an endpoint to update the moisture value. An endpoint is a route that the server listens ex: localhost:3000/get_moisture. The server will listen to the port 3000. We can send a get request to the server to get the moisture value. 
+We need a server so clients have a way to access all the information that we would like to share with them. This is both the PWA data, HTML, JavaScript files and the data from the sensors. It has also an endpoint to update the moisture value. An endpoint is a route that the server listens ex: localhost:5000/get_moisture. The server will listen to the port 5000. We can send a get request to the server to get the moisture value. 
 
 We need a server because we want a single point of access for all client needs. And the client is the person that has the PWA on the phone. The server will be the one that will handle the requests from the client and send the responses back. The server will also handle the data from the sensors and send it to the client.
 
@@ -39,7 +39,7 @@ To run the program we can run the following command:
 ./<target>
 ```
 
-Where target is your built executable.
+Where target is your built executable (cpp_server)
 
 ## Crow
 To include crow in our project we make use of fetchContent in Cmake. This will download the crow library and include it in our project.
@@ -68,13 +68,13 @@ To create a server we need to create a crow::SimpleApp object and define the rou
 The server keeps track of a moisture value. We can update the value by sending a get request to /set_moisture/\<value\>.
 
 ```bash
-curl http://localhost:3000/set_moisture/50
+curl http://localhost:5000/set_moisture/50
 ```
 
 We can get the value by sending a get request to /get_moisture.
 
 ```bash
-curl http://localhost:3000/get_moisture
+curl http://localhost:5000/get_moisture
 ```
 
 
@@ -86,3 +86,12 @@ netsh interface portproxy add v4tov4 listenport=5000 listenaddress=0.0.0.0 conne
 ## Frontend
 
 We can create a frontend to interact with the server. It's a simple html page that shows the current moisture value. We use JavaScript to make a get request to the server to get the moisture value and update the page. We put on click event on a button and when we receive the response from the server we use document.getElementById to find which HTML element to update the value. However there is a inconvenience because we need to know the IP address of the server and this is dynamic because it's based on what network the local server is running on. Since we want people to get access to HTML file we need to create a route that is /index.html and serve the file.
+
+## IP address
+
+To get the right IP configuration address. The computer/phone has to run on the same network. Get the Wi-Fi address for the phone and get the vEthernet for the computer.
+
+```bash
+ipconfig
+```
+
