@@ -77,11 +77,22 @@ We can get the value by sending a get request to /get_moisture.
 curl http://localhost:5000/get_moisture
 ```
 
+send to cloud
+
+```bash 
+scp index.html manifest.json serviceworker.js build/cpp_server USER@IP_ADDRES:/PATH
+```
 
 Forward port from Windows to WSL
 ```ps
 netsh interface portproxy add v4tov4 listenport=5000 listenaddress=0.0.0.0 connectport=5000 connectaddress=(output of: wsl hostname -I)
 ```
+
+In cloud digital ocean
+- Droplets
+- PWA
+- Console
+- Run the program in build as usual
 
 ## Frontend
 
