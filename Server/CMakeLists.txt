@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.27)
-project(CppRestServer)
+project(Server)
 
 # We don't have crow on our system so we need to download it and build it.
 
@@ -25,9 +25,9 @@ FetchContent_MakeAvailable(crow)
 
 
 
-add_executable(cpp_server main.cpp)
+add_executable(server main.cpp)
 
-target_include_directories(cpp_server PRIVATE 
+target_include_directories(server PRIVATE 
     ${ASIO_INCLUDE_DIR}
     ${crow_SOURCE_DIR}/include
 )

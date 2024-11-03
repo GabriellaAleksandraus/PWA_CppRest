@@ -14,21 +14,22 @@ int main()
     });
 
     //Ports
+    std::string PWA_DIR = "../../PWA/";
 
-    CROW_ROUTE(app,"/index.html") ([](){
-        std::ifstream in("../index.html"); //This is to read the file index.html
+    CROW_ROUTE(app,"/index.html") ([&](){ //& takes everything in this scope as a reference
+        std::ifstream in(PWA_DIR + "index.html"); //This is to read the file index.html
         std::string content((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()); //This is to convert the file to a string so we can understand it
         return crow::response(content); //we need to respond to the client with HTTP protocol and crow::response sets up all the necessary headers
     });
 
-    CROW_ROUTE(app, "/manifest.json") ([](){
-        std::ifstream in("../manifest.json"); //This is to read the file manifest.json
+    CROW_ROUTE(app, "/manifest.json") ([&](){
+        std::ifstream in(PWA_DIR + "manifest.json"); //This is to read the file manifest.json
         std::string content((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()); //This is to convert the file to a string
         return crow::response(content);
     });
 
-    CROW_ROUTE(app, "/serviceworker.js") ([](){
-        std::ifstream in("../serviceworker.js"); //This is to read the file service-worker.js
+    CROW_ROUTE(app, "/serviceworker.js") ([&](){
+        std::ifstream in(PWA_DIR + "serviceworker.js"); //This is to read the file service-worker.js
         std::string content((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()); //This is to convert the file to a string
         crow::response response(content);
         response.add_header("Content-Type", "application/javascript");
