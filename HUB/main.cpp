@@ -13,7 +13,7 @@ int main(int argc, char **argv)
  {
     //Send values from HUB to server via HTTP
 
-    auto response = cpr::Get(cpr::Url{"http://localhost:5000/set_moisture/70"});
+    auto response = cpr::Get(cpr::Url{"http://192.168.1.166:5000/set_moisture/70"});
     std::cout << response.status_code << response.text << std::endl;
 
     //Get values from monitor via Bluetooth
