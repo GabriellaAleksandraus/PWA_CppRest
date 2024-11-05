@@ -1,10 +1,12 @@
-#include <iostream>
 #include <cpr.h>
-
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <string>
 #include <sys/socket.h>
+#include <unistd.h>
+#include <vector>
+#include <stdio.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/hci.h>
 #include <bluetooth/hci_lib.h>
@@ -16,13 +18,9 @@ int sendToServer(int moistureValue){
 
 }
 
+std::vector<std::string> scanDevices(){
+    std::vector<std::string> foundDevices{}; 
 
-int main(int argc, char **argv){
-    //Send values from HUB to server via HTTP
-    int statusCode = sendToServer(50);
-    std::cout << statusCode << std::endl;
-
-    //Get values from monitor via Bluetooth
     inquiry_info *ii = NULL;
     int max_rsp, num_rsp;
     int dev_id, sock, len, flags;
@@ -51,11 +49,29 @@ int main(int argc, char **argv){
         if (hci_read_remote_name(sock, &(ii+i)->bdaddr, sizeof(name), 
             name, 0) < 0)
         strcpy(name, "[unknown]");
-        printf("%s  %s\n", addr, name);
+        foundDevices.push_back(std::string(addr) + std::string(name));
     }
 
     free( ii );
     close( sock );
+    return foundDevices;
+}
+
+
+
+int main(int argc, char **argv){
+    //Send values from HUB to server via HTTP
+    int statusCode = sendToServer(50);
+    std::cout << statusCode << std::endl;
+
+    //Get values from monitor via Bluetooth
+    std::vector<std::string> foundDevices = scanDevices();
+
+    for(auto device: foundDevices) {
+        std::cout << device << std::endl;
+    }
+
+
 
 
 }
