@@ -1,3 +1,6 @@
+#include <iostream>
+#include <cpr.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,7 +10,13 @@
 #include <bluetooth/hci_lib.h>
 
 int main(int argc, char **argv)
-{
+ {
+    //call set_moisture HTTP
+
+    auto response = cpr::Get(cpr::Url{"http://localhost:5000/set_moisture/70"});
+    std::cout << response.status_code << response.text << std::endl;
+
+    //Bluetooth
     inquiry_info *ii = NULL;
     int max_rsp, num_rsp;
     int dev_id, sock, len, flags;
@@ -41,5 +50,6 @@ int main(int argc, char **argv)
 
     free( ii );
     close( sock );
-    return 0;
+
+
 }
