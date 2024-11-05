@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.25)
 project(Server)
 
 # We don't have crow on our system so we need to download it and build it.

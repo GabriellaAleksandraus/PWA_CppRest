@@ -11,12 +11,12 @@
 
 int main(int argc, char **argv)
  {
-    //call set_moisture HTTP
+    //Send values from HUB to server via HTTP
 
     auto response = cpr::Get(cpr::Url{"http://localhost:5000/set_moisture/70"});
     std::cout << response.status_code << response.text << std::endl;
 
-    //Bluetooth
+    //Get values from monitor via Bluetooth
     inquiry_info *ii = NULL;
     int max_rsp, num_rsp;
     int dev_id, sock, len, flags;
