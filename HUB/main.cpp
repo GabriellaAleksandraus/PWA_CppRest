@@ -9,12 +9,18 @@
 #include <bluetooth/hci.h>
 #include <bluetooth/hci_lib.h>
 
-int main(int argc, char **argv)
- {
-    //Send values from HUB to server via HTTP
 
-    auto response = cpr::Get(cpr::Url{"http://192.168.1.166:5000/set_moisture/70"});
-    std::cout << response.status_code << response.text << std::endl;
+int sendToServer(int moistureValue){
+    auto response = cpr::Get(cpr::Url{"http://192.168.1.166:5000/set_moisture/" + std::to_string(moistureValue)});
+    return response.status_code
+
+}
+
+
+int main(int argc, char **argv){
+    //Send values from HUB to server via HTTP
+    int statusCode = sendToServer(50)
+    std::cout << statusCode << std::endl;
 
     //Get values from monitor via Bluetooth
     inquiry_info *ii = NULL;
