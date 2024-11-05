@@ -19,7 +19,7 @@ int sendToServer(int moistureValue){
 
 int main(int argc, char **argv){
     //Send values from HUB to server via HTTP
-    int statusCode = sendToServer(50)
+    int statusCode = sendToServer(50);
     std::cout << statusCode << std::endl;
 
     //Get values from monitor via Bluetooth
