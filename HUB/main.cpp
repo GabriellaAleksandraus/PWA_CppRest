@@ -12,7 +12,7 @@
 
 int sendToServer(int moistureValue){
     auto response = cpr::Get(cpr::Url{"http://192.168.1.166:5000/set_moisture/" + std::to_string(moistureValue)});
-    return response.status_code
+    return response.status_code;
 
 }
 
